@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "demo-mcu-sensor-001",
+  "scope": "beginner_simple",
+  "sources": {
+    "design_intent_revision": "schematic-2026-09-30T08:00Z",
+    "schematic_revision": "schematic-2026-09-30T08:00Z",
+    "board_revision": "board-2026-09-30T08:10Z",
+    "constraints_revision": "pcb-2026-09-30T08:15Z",
+    "pcb_constraints_revision": "pcb-2026-09-30T08:15Z"
+  },
+  "target": {
+    "window_id": "window-demo",
+    "project": {"uuid": "project-demo", "name": "Beginner MCU Sensor"},
+    "documents": [
+      {"uuid": "sch-demo", "type": "schematic_page", "revision": "eda-sch-r12"},
+      {"uuid": "pcb-demo", "type": "pcb", "revision": "eda-pcb-r7"}
+    ]
+  },
+  "approval": {
+    "approved": true,
+    "approved_by": "designer",
+    "approved_at": "2026-09-30T08:30:00Z",
+    "approved_revisions": ["schematic-2026-09-30T08:00Z", "pcb-2026-09-30T08:15Z", "eda-sch-r12", "eda-pcb-r7"],
+    "approved_scope": ["inspect", "schematic", "sync_pcb", "placement", "routing", "copper", "erc", "drc", "save", "readback"]
+  },
+  "operations": [
+    {"id": "inspect", "kind": "inspect_identity", "requires_approval": false, "expected_evidence": ["document_identity"]},
+    {"id": "revision", "kind": "confirm_revision", "requires_approval": true, "expected_evidence": ["document_snapshot"]},
+    {"id": "sync", "kind": "sync_schematic_to_pcb", "document_uuid": "pcb-demo", "requires_approval": true},
+    {"id": "place", "kind": "place_components", "document_uuid": "pcb-demo", "requires_approval": true},
+    {"id": "route", "kind": "route_nets", "document_uuid": "pcb-demo", "requires_approval": true},
+    {"id": "erc", "kind": "run_erc", "document_uuid": "sch-demo", "requires_approval": true},
+    {"id": "drc", "kind": "run_drc", "document_uuid": "pcb-demo", "requires_approval": true},
+    {"id": "save", "kind": "save", "requires_approval": true},
+    {"id": "readback", "kind": "close_reopen", "requires_approval": true, "expected_evidence": ["reopen"]}
+  ],
+  "options": {"dry_run": false, "close_reopen_for_readback": true}
+}

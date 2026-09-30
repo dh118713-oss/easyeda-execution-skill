@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "demo-mcu-sensor-001",
+  "started_at": "2026-09-30T08:35:00Z",
+  "finished_at": "2026-09-30T08:38:00Z",
+  "status": "completed",
+  "sources": {"design_intent_revision": "schematic-2026-09-30T08:00Z", "schematic_revision": "schematic-2026-09-30T08:00Z", "board_revision": "board-r8-sha256:demo", "constraints_revision": "pcb-2026-09-30T08:15Z", "pcb_constraints_revision": "pcb-2026-09-30T08:15Z"},
+  "target": {"window_id": "window-demo", "project": {"uuid": "project-demo", "name": "Beginner MCU Sensor"}, "documents": [{"uuid": "sch-demo", "type": "schematic_page", "revision": "eda-sch-r13"}, {"uuid": "pcb-demo", "type": "pcb", "revision": "board-r8-sha256:demo"}]},
+  "board_revision": "board-r8-sha256:demo",
+  "operations": [
+    {"id": "inspect", "kind": "inspect_identity", "status": "completed", "evidence_ids": ["ev-identity"]},
+    {"id": "revision", "kind": "confirm_revision", "status": "completed", "evidence_ids": ["ev-revision"]},
+    {"id": "sync", "kind": "sync_schematic_to_pcb", "status": "completed", "evidence_ids": ["ev-sync"]},
+    {"id": "place", "kind": "place_components", "status": "completed"},
+    {"id": "route", "kind": "route_nets", "status": "completed"},
+    {"id": "erc", "kind": "run_erc", "status": "completed", "evidence_ids": ["ev-erc"]},
+    {"id": "drc", "kind": "run_drc", "status": "completed", "evidence_ids": ["ev-drc"]},
+    {"id": "save", "kind": "save", "status": "completed", "evidence_ids": ["ev-save"]},
+    {"id": "readback", "kind": "close_reopen", "status": "completed", "evidence_ids": ["ev-reopen"]}
+  ],
+  "checks": {"erc": {"status": "passed", "raw_result": {"passed": true}, "error_count": 0}, "drc": {"status": "passed", "raw_result": {"passed": true}, "error_count": 0}},
+  "design_review": {"status": "ready_for_beginner_review", "human_review_required": true, "issues": [], "open_questions": ["确认实物电源和接口保护满足使用环境"]},
+  "evidence": [
+    {"id": "ev-identity", "kind": "document_identity", "summary": "Project and document UUIDs matched the approved plan."},
+    {"id": "ev-revision", "kind": "document_snapshot", "summary": "Source revisions matched before mutation."},
+    {"id": "ev-sync", "kind": "api_result", "summary": "Schematic-to-PCB synchronization returned and was read back."},
+    {"id": "ev-erc", "kind": "erc", "summary": "ERC raw result captured with zero reported errors."},
+    {"id": "ev-drc", "kind": "drc", "summary": "DRC raw result captured with zero reported errors."},
+    {"id": "ev-save", "kind": "save", "summary": "Save completed for the approved project."},
+    {"id": "ev-reopen", "kind": "reopen", "summary": "Document reopened and key primitives were read back."}
+  ]
+}
